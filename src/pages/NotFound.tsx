@@ -1,7 +1,8 @@
-import logoImg from "../assets/images/logo.svg";
-import "../styles/notfound.scss";
-import { Button } from "../components/Button";
 import { useHistory } from "react-router-dom";
+
+import logoImg from "../assets/images/logo.svg";
+import { Button } from "../components/Button";
+import "../styles/notfound.scss";
 
 export function NotFound() {
   const history = useHistory();
@@ -12,7 +13,7 @@ export function NotFound() {
         <div className="container">
           <img src={logoImg} alt="Letmeask" />
           <h2>Error 404: Page not found!</h2>
-          <Button type="submit" onClick={() => history.goBack()}>
+          <Button type="submit" onClick={() => history.push("/")}>
             Voltar
           </Button>
         </div>
