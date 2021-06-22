@@ -1,6 +1,8 @@
+import Routes from "./pages/routes";
+
 function App() {
   return (
-    <h1>Hello World!!</h1>
+    <Routes />
   );
 }
 

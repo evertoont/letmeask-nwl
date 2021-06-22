@@ -1,0 +1,28 @@
+#page-notfound {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  main {
+    padding: 0 32px;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+
+    > img {
+      align-self: center;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-top: 30px;
+      font-family: "Poppins", sans-serif;
+    }
+  }
+}
