@@ -51,7 +51,8 @@ $ cd letmeask-nwl
 $ yarn install
 
 # Realize a configuração do SDK do Firebase
-# No arquivo /src/services/firebase.ts
+# No arquivo .env.example
+# Altere o nome do arquivo para .env.local
 
 # Execute a aplicação
 $ yarn start
