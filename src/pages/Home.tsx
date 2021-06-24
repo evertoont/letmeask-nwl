@@ -7,6 +7,7 @@ import illustrationImg from "../assets/images/illustration.svg";
 import logoImg from "../assets/images/logo.svg";
 import googleIconImg from "../assets/images/google-icon.svg";
 import loginImg from "../assets/images/login.svg";
+import toast, { Toaster } from "react-hot-toast";
 
 import { Button } from "../components/Button";
 
@@ -17,6 +18,7 @@ export function Home() {
   const history = useHistory();
   const { user, signInWithGoogle } = useAuth();
   const [roomCode, setRoomCode] = useState("");
+  const toastMessage = "Está sala não existe!";
 
   async function handleCreateRoom() {
     if (!user) {
@@ -30,13 +32,14 @@ export function Home() {
     event.preventDefault();
 
     if (roomCode.trim() === "") {
+      toast.error(toastMessage);
       return;
     }
 
     const roomRef = await database.ref(`rooms/${roomCode}`).get();
 
     if (!roomRef.exists()) {
-      alert("Room does not exists.");
+      toast.error(toastMessage);
       return;
     }
 
@@ -51,6 +54,7 @@ export function Home() {
         <p>Tire as dúvidas da sua audiência em tempo-real</p>
       </aside>
       <main>
+        <Toaster position="top-right" toastOptions={{ duration: 2000 }} />
         <div className="main-content">
           <img src={logoImg} alt="Letmeask" />
           <button className="create-room" onClick={handleCreateRoom}>

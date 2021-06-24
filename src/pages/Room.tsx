@@ -1,10 +1,13 @@
+import { FormEvent, useState, useEffect } from "react";
+
 import { useParams } from "react-router-dom";
 import logoImg from "../assets/images/logo.svg";
 import "../styles/room.scss";
 
+import toast, { Toaster } from "react-hot-toast";
 import { Button } from "../components/Button";
 import { RoomCode } from "../components/RoomCode";
-import { FormEvent, useState, useEffect } from "react";
+
 import { useAuth } from "../hooks/useAuth";
 import { database } from "../services/firebase";
 
@@ -71,11 +74,13 @@ export function Room() {
     event.preventDefault();
 
     if (newQuestion.trim() === "") {
+      toast.error("Campo de pergunta está vazio!");
       return;
     }
 
     if (!user) {
-      throw new Error("You must be logged in");
+      toast.error("Você deve estar logado!");
+      return;
     }
 
     const question = {
@@ -100,6 +105,7 @@ export function Room() {
           <img src={logoImg} alt="Letmeask" />
           <RoomCode code={roomId} />
         </div>
+        <Toaster toastOptions={{ duration: 2100 }} />
       </header>
 
       <main>
