@@ -1,6 +1,6 @@
 import copyImg from "../../assets/images/copy.svg";
-import "./style.scss";
 import toast from 'react-hot-toast';
+import "./style.scss";
 
 type RoomCodeProps = {
   code: string;

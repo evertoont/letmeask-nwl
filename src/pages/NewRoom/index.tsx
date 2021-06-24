@@ -3,13 +3,14 @@ import { FormEvent } from "react";
 import illustrationImg from "../../assets/images/illustration.svg";
 import logoImg from "../../assets/images/logo.svg";
 import { Button } from "../../components/Button";
-import "../../styles/auth.scss";
 
 import { Link, useHistory } from "react-router-dom";
 import { useState } from "react";
 import { database } from "../../services/firebase";
 import { useAuth } from "../../hooks/useAuth";
 import toast, { Toaster } from "react-hot-toast";
+
+import "../../styles/auth.scss";
 
 export function NewRoom() {
   const { user } = useAuth();

@@ -10,9 +10,9 @@ import loginImg from "../../assets/images/login.svg";
 import toast, { Toaster } from "react-hot-toast";
 
 import { Button } from "../../components/Button";
+import { database } from "../../services/firebase";
 
 import "../../styles/auth.scss";
-import { database } from "../../services/firebase";
 
 export function Home() {
   const history = useHistory();
