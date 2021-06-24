@@ -12,6 +12,7 @@ import { useRoom } from "../../hooks/useRoom";
 import { database } from "../../services/firebase";
 
 import "../../styles/room.scss";
+import { Loading } from "../../components/Loading";
 
 type RoomParams = {
   id: string;
@@ -21,7 +22,7 @@ export function AdminRoom() {
   // const { user } = useAuth();
   const params = useParams<RoomParams>();
   const roomId = params.id;
-  const history = useHistory()
+  const history = useHistory();
 
   const { questions, title } = useRoom(roomId);
   const questionsQuantity = questions.length;
@@ -29,9 +30,9 @@ export function AdminRoom() {
   async function handleEndRoom() {
     await database.ref(`rooms/${roomId}`).update({
       endedAt: new Date(),
-    })
+    });
 
-    history.push('/');
+    history.push("/");
   }
 
   async function handleDeleteQuestion(questionId: string) {
@@ -47,7 +48,9 @@ export function AdminRoom() {
           <img src={logoImg} alt="Letmeask" />
           <div>
             <RoomCode code={roomId} />
-            <Button isOutlined onClick={handleEndRoom}>Encerra sala</Button>
+            <Button isOutlined onClick={handleEndRoom}>
+              Encerra sala
+            </Button>
           </div>
         </div>
         <Toaster toastOptions={{ duration: 2100 }} />
@@ -62,22 +65,26 @@ export function AdminRoom() {
         </div>
 
         <div className="question-list">
-          {questions.map((question) => {
-            return (
-              <CardQuestion
-                key={question.id}
-                content={question.content}
-                author={question.author}
-              >
-                <button
-                  type="button"
-                  onClick={() => handleDeleteQuestion(question.id)}
+          {questionsQuantity > 0 ? (
+            questions.map((question) => {
+              return (
+                <CardQuestion
+                  key={question.id}
+                  content={question.content}
+                  author={question.author}
                 >
-                  <img src={deleteImg} alt="Remover pergunta" />
-                </button>
-              </CardQuestion>
-            );
-          })}
+                  <button
+                    type="button"
+                    onClick={() => handleDeleteQuestion(question.id)}
+                  >
+                    <img src={deleteImg} alt="Remover pergunta" />
+                  </button>
+                </CardQuestion>
+              );
+            })
+          ) : (
+            <Loading />
+          )}
         </div>
       </main>
     </div>
