@@ -1,8 +1,8 @@
 import { useHistory } from "react-router-dom";
 
-import logoImg from "../assets/images/logo.svg";
-import { Button } from "../components/Button";
-import "../styles/notfound.scss";
+import logoImg from "../../assets/images/logo.svg";
+import { Button } from "../../components/Button";
+import "./style.scss";
 
 export function NotFound() {
   const history = useHistory();

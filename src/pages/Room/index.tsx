@@ -1,15 +1,15 @@
 import { FormEvent, useState, useEffect } from "react";
 
 import { useParams } from "react-router-dom";
-import logoImg from "../assets/images/logo.svg";
-import "../styles/room.scss";
+import logoImg from "../../assets/images/logo.svg";
+import "./style.scss";
 
 import toast, { Toaster } from "react-hot-toast";
-import { Button } from "../components/Button";
-import { RoomCode } from "../components/RoomCode";
+import { Button } from "../../components/Button";
+import { RoomCode } from "../../components/RoomCode";
 
-import { useAuth } from "../hooks/useAuth";
-import { database } from "../services/firebase";
+import { useAuth } from "../../hooks/useAuth";
+import { database } from "../../services/firebase";
 
 type FirebaseQuestions = Record<
   string,
@@ -46,6 +46,7 @@ export function Room() {
   const [newQuestion, setNewQuestion] = useState("");
   const [questions, setQuestions] = useState<Questions[]>([]);
   const [title, setTitle] = useState("");
+  const questionsQuantity = questions.length
 
   useEffect(() => {
     const roomRef = database.ref(`rooms/${roomId}`);
@@ -111,7 +112,7 @@ export function Room() {
       <main>
         <div className="room-title">
           <h1>Sala {title}</h1>
-          {questions.length > 0 && <span>{questions.length} pergunta(s)</span>}
+          {questionsQuantity > 0 && <span>{questionsQuantity} pergunta(s)</span>}
         </div>
 
         <form onSubmit={handleSendQuestion}>
