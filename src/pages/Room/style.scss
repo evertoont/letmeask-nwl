@@ -15,15 +15,6 @@
           max-height: 45px;
         }
       }
-
-      > div {
-        display: flex;
-        gap: 16px;
-
-        button {
-          height: 40px;
-        }
-      }
     }
   }
 
@@ -114,12 +105,5 @@
     .question-list {
       margin-top: 32px;
     }
-  }
-
-  .wait-question {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
   }
 }

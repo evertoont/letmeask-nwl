@@ -14,7 +14,7 @@ import { database } from "../../services/firebase";
 import { CardQuestion } from "../../components/CardQuestion";
 import { useRoom } from "../../hooks/useRoom";
 
-import "../../styles/room.scss";
+import "./style.scss";
 
 type RoomParams = {
   id: string;

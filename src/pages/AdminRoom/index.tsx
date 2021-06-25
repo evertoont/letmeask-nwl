@@ -14,7 +14,7 @@ import { useRoom } from "../../hooks/useRoom";
 import { database } from "../../services/firebase";
 
 import { EmptyQuestion } from "../../components/EmptyQuestion";
-import "../../styles/room.scss";
+import "./style.scss";
 
 type RoomParams = {
   id: string;
@@ -93,7 +93,7 @@ export function AdminRoom() {
   }
 
   return (
-    <div id="page-room">
+    <div id="page-admin">
       <header>
         <div className="content">
           <Link to="/">
