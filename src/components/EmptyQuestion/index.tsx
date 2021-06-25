@@ -1,4 +1,5 @@
 import emptyImg from "../../assets/images/empty-questions.svg";
+import { Loading } from "../Loading/";
 import "./style.scss";
 
 export function EmptyQuestion() {
@@ -10,13 +11,7 @@ export function EmptyQuestion() {
         Envie o código desta sala para seus amigos e <br /> comece a responder
         perguntas!
       </span>
-
-      <div className="loading">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+      <Loading />
     </div>
   );
 }

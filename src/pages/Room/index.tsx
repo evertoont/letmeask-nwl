@@ -7,6 +7,7 @@ import logoImg from "../../assets/images/logo.svg";
 import toast, { Toaster } from "react-hot-toast";
 import { Button } from "../../components/Button";
 import { RoomCode } from "../../components/RoomCode";
+import { Loading } from "../../components/Loading"
 
 import { useAuth } from "../../hooks/useAuth";
 import { database } from "../../services/firebase";
@@ -129,7 +130,9 @@ export function Room() {
         </form>
 
         <div className="question-list">
-          {questions.map((question) => {
+          {questionsQuantity === 0 ? (
+            <Loading />
+          ) : ( questions.map((question) => {
             return (
               <CardQuestion
                 key={question.id}
@@ -176,7 +179,8 @@ export function Room() {
                 )}
               </CardQuestion>
             );
-          })}
+          })
+        )}
         </div>
       </main>
     </div>
