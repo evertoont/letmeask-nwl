@@ -13,8 +13,8 @@ import { CardQuestion } from "../../components/CardQuestion";
 import { useRoom } from "../../hooks/useRoom";
 import { database } from "../../services/firebase";
 
+import { EmptyQuestion } from "../../components/EmptyQuestion";
 import "../../styles/room.scss";
-import { Loading } from "../../components/Loading";
 
 type RoomParams = {
   id: string;
@@ -153,7 +153,9 @@ export function AdminRoom() {
               );
             })
           ) : (
-            <Loading />
+            <div className="wait-question">
+              <EmptyQuestion/>
+            </div>
           )}
         </div>
       </main>
