@@ -29,44 +29,62 @@ export function AdminRoom() {
   const { questions, title } = useRoom(roomId);
   const questionsQuantity = questions.length;
 
-  async function handleEndRoom() {
-    await database.ref(`rooms/${roomId}`).update({
-      endedAt: new Date(),
-    });
-
-    history.push("/");
-  }
-
+  
   function userIsLogged() {
     if (!user) {
       toast.error("Você deve estar logado!");
       return;
     }
-
     return true;
+  }
+  
+  async function userOwnsTheRoom() {
+    const roomRef = await database.ref(`rooms/${roomId}`).get();
+    const authorIdRoom = roomRef.val().authorId;
+    
+    if (user?.id === authorIdRoom) {
+      return true;
+    }
+    toast.error("Você não pode executar está ação!");
+    return;
+  }
+
+  async function handleClosedRoom() {
+    if (await userOwnsTheRoom()) {
+    await database.ref(`rooms/${roomId}`).update({
+      endedAt: new Date(),
+    });
+      history.push("/");
+    }
   }
 
   async function handleDeleteQuestion(questionId: string) {
     if (userIsLogged()) {
-      if (window.confirm("Tem certeza que você deseja excluir esta pergunta?")) {
-        await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
-      }      
+      if (await userOwnsTheRoom()) {
+        if (window.confirm("Tem certeza que você deseja excluir esta pergunta?")) {
+          await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
+        }
+      }
     }
   }
 
   async function handleCheckQuestionAsAnswered(questionId: string) {
     if (userIsLogged()) {
-      await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
-        isAnswered: true,
-      });
+      if (await userOwnsTheRoom()) {
+        await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+          isAnswered: true,
+        });
+      }
     }
   }
 
   async function handleHighlightQuestion(questionId: string) {
     if (userIsLogged()) {
-      await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
-        isHighlighted: true,
-      });      
+      if (await userOwnsTheRoom()) {
+        await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+          isHighlighted: true,
+        });
+      }
     }
   }
 
@@ -77,7 +95,7 @@ export function AdminRoom() {
           <img src={logoImg} alt="Letmeask" />
           <div>
             <RoomCode code={roomId} />
-            <Button isOutlined onClick={handleEndRoom}>
+            <Button isOutlined onClick={handleClosedRoom}>
               Encerra sala
             </Button>
           </div>
