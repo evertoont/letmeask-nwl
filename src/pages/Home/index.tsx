@@ -18,7 +18,6 @@ export function Home() {
   const history = useHistory();
   const { user, signInWithGoogle } = useAuth();
   const [roomCode, setRoomCode] = useState("");
-  const toastMessage = "Está sala não existe!";
 
   async function handleCreateRoom() {
     if (!user) {
@@ -32,14 +31,14 @@ export function Home() {
     event.preventDefault();
 
     if (roomCode.trim() === "") {
-      toast.error(toastMessage);
+      toast.error("Campo está vazio!");
       return;
     }
 
     const roomRef = await database.ref(`rooms/${roomCode}`).get();
 
     if (!roomRef.exists()) {
-      toast.error(toastMessage);
+      toast.error("Está sala não existe!");
       return;
     }
 

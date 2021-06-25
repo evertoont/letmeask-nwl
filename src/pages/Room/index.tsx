@@ -1,4 +1,5 @@
 import { FormEvent, useState } from "react";
+import {Link} from 'react-router-dom'
 
 import { useParams } from "react-router-dom";
 import logoImg from "../../assets/images/logo.svg";
@@ -24,15 +25,13 @@ export function Room() {
   const [newQuestion, setNewQuestion] = useState("");
   const roomId = params.id;
 
-  const { questions, title } = useRoom(roomId);
+  const { questions, title, dataRoom } = useRoom(roomId);
   const questionsQuantity = questions.length;
 
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault();
 
-    const roomRef = await database.ref(`rooms/${roomId}`).get();
-
-    if (roomRef.val().endedAt) {
+    if (dataRoom?.endedAt) {
       toast.error("Está sala já está fechada!");
       return;
     }
@@ -91,7 +90,7 @@ export function Room() {
     <div id="page-room">
       <header>
         <div className="content">
-          <img src={logoImg} alt="Letmeask" />
+          <Link to="/"><img src={logoImg} alt="Letmeask"/></Link>
           <RoomCode code={roomId} />
         </div>
         <Toaster toastOptions={{ duration: 2100 }} />
@@ -99,7 +98,7 @@ export function Room() {
 
       <main>
         <div className="room-title">
-          <h1>Sala {title}</h1>
+          <h1>Sala - {title}</h1>
           {questionsQuantity > 0 && (
             <span>{questionsQuantity} pergunta(s)</span>
           )}

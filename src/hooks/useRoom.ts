@@ -34,9 +34,16 @@ type Questions = {
   likeId: string | undefined;
 };
 
+type DataRoomProps = {
+  authorId: string;
+  endedAt: string;
+  title: string;
+};
+
 export function useRoom(roomId: String) {
   const { user } = useAuth();
   const [questions, setQuestions] = useState<Questions[]>([]);
+  const [dataRoom, setDataRoom] = useState<DataRoomProps>();
   const [title, setTitle] = useState("");
 
   useEffect(() => {
@@ -45,6 +52,7 @@ export function useRoom(roomId: String) {
     roomRef.on("value", (room) => {
       const databaseRoom = room.val();
       const firebaseQuestions: FirebaseQuestions = databaseRoom.questions ?? {};
+      setDataRoom(databaseRoom);
 
       const parsedQuestions = Object.entries(firebaseQuestions).map(
         ([key, value]) => {
@@ -70,5 +78,5 @@ export function useRoom(roomId: String) {
     };
   }, [roomId, user?.id]);
 
-  return { questions, title };
+  return { questions, title, dataRoom };
 }

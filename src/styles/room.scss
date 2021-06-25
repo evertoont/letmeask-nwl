@@ -10,8 +10,10 @@
       justify-content: space-between;
       align-items: center;
 
-      > img {
-        max-height: 45px;
+      > a {
+        img {
+          max-height: 45px;
+        }
       }
 
       > div {
@@ -61,8 +63,8 @@
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.082);
         resize: vertical;
         min-height: 130px;
-        
-        &:focus{
+
+        &:focus {
           outline: 1px solid #835afd;
         }
       }
@@ -114,7 +116,7 @@
     }
   }
 
-  .wait-question{
+  .wait-question {
     display: flex;
     justify-content: center;
     align-items: center;

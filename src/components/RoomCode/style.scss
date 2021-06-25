@@ -8,7 +8,9 @@
   cursor: pointer;
 
   display: flex;
-
+  width: 180px;
+  transition: 0.15s;
+  
   div {
     background: #835afd;
     padding: 0 12px;
@@ -17,21 +19,36 @@
     align-items: center;
     height: 100%;
   }
-
+  
   span {
     display: block;
     align-self: center;
     flex: 1;
     padding: 0 12px 0 12px;
-    width: 240px;
     font-size: 14px;
     font-weight: 500;
     color: #29292e;
-  }
+    
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 
+    transition: 0.1s;
+
+  }
+  
   &:active {
     span {
       font-size: 13px;
+    }
+  }
+  
+  &:hover {
+    width: 280px;
+    span {
+      width: 240px;
+      text-overflow: initial;
+      overflow: visible;
     }
   }
 }

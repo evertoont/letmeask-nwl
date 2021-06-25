@@ -1,4 +1,4 @@
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
 import logoImg from "../../assets/images/logo.svg";
 import deleteImg from "../../assets/images/delete.svg";
 import checkImg from "../../assets/images/check.svg";
@@ -26,10 +26,9 @@ export function AdminRoom() {
   const roomId = params.id;
   const history = useHistory();
 
-  const { questions, title } = useRoom(roomId);
+  const { questions, title, dataRoom } = useRoom(roomId);
   const questionsQuantity = questions.length;
 
-  
   function userIsLogged() {
     if (!user) {
       toast.error("Você deve estar logado!");
@@ -37,11 +36,10 @@ export function AdminRoom() {
     }
     return true;
   }
-  
+
   async function userOwnsTheRoom() {
-    const roomRef = await database.ref(`rooms/${roomId}`).get();
-    const authorIdRoom = roomRef.val().authorId;
-    
+    const authorIdRoom = dataRoom?.authorId;
+
     if (user?.id === authorIdRoom) {
       return true;
     }
@@ -51,10 +49,16 @@ export function AdminRoom() {
 
   async function handleClosedRoom() {
     if (await userOwnsTheRoom()) {
-    await database.ref(`rooms/${roomId}`).update({
-      endedAt: new Date(),
-    });
-      history.push("/");
+      if (dataRoom?.endedAt) {
+        toast.error("Está sala já está fechada!");
+        return;
+      }
+      if (window.confirm("Tem certeza que você deseja encerrar a sala?")) {
+        await database.ref(`rooms/${roomId}`).update({
+          endedAt: new Date(),
+        });
+        history.push("/");
+      }
     }
   }
 
@@ -92,7 +96,9 @@ export function AdminRoom() {
     <div id="page-room">
       <header>
         <div className="content">
-          <img src={logoImg} alt="Letmeask" />
+          <Link to="/">
+            <img src={logoImg} alt="Letmeask" />
+          </Link>
           <div>
             <RoomCode code={roomId} />
             <Button isOutlined onClick={handleClosedRoom}>
@@ -105,7 +111,7 @@ export function AdminRoom() {
 
       <main>
         <div className="room-title">
-          <h1>Sala {title}</h1>
+          <h1>Sala - {title}</h1>
           {questionsQuantity > 0 && (
             <span>{questionsQuantity} pergunta(s)</span>
           )}
@@ -154,7 +160,7 @@ export function AdminRoom() {
             })
           ) : (
             <div className="wait-question">
-              <EmptyQuestion/>
+              <EmptyQuestion />
             </div>
           )}
         </div>
