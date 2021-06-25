@@ -63,10 +63,13 @@ export function Room() {
     setNewQuestion("");
   }
 
-  async function handleLikeQuestion(
-    questionId: string,
-    likeId: string | undefined
-  ) {
+  async function handleLikeQuestion(questionId: string, likeId: string | undefined) {
+    
+    if (!user) {
+      toast.error("Você deve estar logado!");
+      return;
+    }
+
     if (likeId) {
       await database
         .ref(`rooms/${roomId}/questions/${questionId}/likes/${likeId}`)
