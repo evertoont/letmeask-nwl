@@ -26,7 +26,7 @@ Projeto desenvolvido durante a Next Level Week #6 da @Rocketseat. Consiste numa 
 
 #### Acesse a demo:
 
-(em breve)
+- [Letmeask - Demo](https://letmeask-nwl.vercel.app/)
 
 ## :computer: Tecnologias utilizadas
 
