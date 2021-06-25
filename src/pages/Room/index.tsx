@@ -30,6 +30,13 @@ export function Room() {
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault();
 
+    const roomRef = await database.ref(`rooms/${roomId}`).get();
+
+    if (roomRef.val().endedAt) {
+      toast.error("Está sala já está fechada!");
+      return;
+    }
+    
     if (newQuestion.trim() === "") {
       toast.error("Campo de pergunta está vazio!");
       return;
@@ -39,6 +46,7 @@ export function Room() {
       toast.error("Você deve estar logado!");
       return;
     }
+
 
     const question = {
       content: newQuestion,
