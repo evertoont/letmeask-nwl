@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-   <img src="https://user-images.githubusercontent.com/55769021/123392672-b6d06c80-d573-11eb-9851-12faf2b1fcfb.png" alt="Home page Letmeask" width="60%"/>
+   <img src="https://user-images.githubusercontent.com/55769021/123392672-b6d06c80-d573-11eb-9851-12faf2b1fcfb.png" alt="Home page Letmeask"/>
 </p>
 
 ---
