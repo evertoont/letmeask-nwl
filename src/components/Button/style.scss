@@ -22,6 +22,12 @@
     color: #835afd;
   }
 
+  &.logout{
+    background: #DBDCDD;
+    border: 1px solid #DBDCDD;
+    color: #737380;
+  }
+
   &:not(:disabled):hover {
     filter: brightness(0.95);
   }

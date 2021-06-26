@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 
 import { useParams } from "react-router-dom";
 import logoImg from "../../assets/images/logo.svg";
@@ -21,10 +21,11 @@ type RoomParams = {
 };
 
 export function Room() {
-  const { user, signInWithGoogle } = useAuth();
+  const { user, signInWithGoogle, signOut } = useAuth();
   const params = useParams<RoomParams>();
   const [newQuestion, setNewQuestion] = useState("");
   const roomId = params.id;
+  const history = useHistory()
 
   const { questions, title, dataRoom } = useRoom(roomId);
   const questionsQuantity = questions.length;
@@ -87,12 +88,23 @@ export function Room() {
     }
   }
 
+  async function handleLogOut(){
+    if (user) {
+      await signOut()
+      history.push('/')  
+    }else{
+      toast.error("Você não está logado!");    
+    }
+  }
   return (
     <div id="page-room">
       <header>
         <div className="content">
           <Link to="/"><img src={logoImg} alt="Letmeask"/></Link>
-          <RoomCode code={roomId} />
+          <div>
+            <RoomCode code={roomId} />
+            <Button isOutlined isLogout onClick={handleLogOut} disabled={!user}> Sair</Button>
+          </div>
         </div>
         <Toaster toastOptions={{ duration: 2100 }} />
       </header>

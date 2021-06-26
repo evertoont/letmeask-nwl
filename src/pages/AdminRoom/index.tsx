@@ -21,7 +21,7 @@ type RoomParams = {
 };
 
 export function AdminRoom() {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const params = useParams<RoomParams>();
   const roomId = params.id;
   const history = useHistory();
@@ -92,6 +92,11 @@ export function AdminRoom() {
     }
   }
 
+  async function handleLogOut(){
+    await signOut()
+    history.push('/')
+  }
+
   return (
     <div id="page-admin">
       <header>
@@ -103,6 +108,9 @@ export function AdminRoom() {
             <RoomCode code={roomId} />
             <Button isOutlined onClick={handleClosedRoom}>
               Encerra sala
+            </Button>
+            <Button isOutlined isLogout onClick={handleLogOut} disabled={!user}> 
+              Sair
             </Button>
           </div>
         </div>
