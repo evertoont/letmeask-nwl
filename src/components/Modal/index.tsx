@@ -1,8 +1,10 @@
-import "./style.scss";
 import closedImg from "../../assets/images/close.svg";
+import deleteModalImg from "../../assets/images/delete-modal.svg";
 import { Button } from "../Button";
 import { database } from "../../services/firebase";
 import { useHistory } from "react-router-dom";
+
+import "./style.scss";
 
 type ModalProps = {
   isOpen: boolean;
@@ -12,11 +14,17 @@ type ModalProps = {
   type: string;
 };
 
-export function Modal(props: ModalProps) {
+export function Modal({
+  isOpen,
+  setIsOpen,
+  roomId,
+  questionId,
+  type,
+}: ModalProps) {
   const history = useHistory();
 
   async function handleClosedRoom() {
-    await database.ref(`rooms/${props.roomId}`).update({
+    await database.ref(`rooms/${roomId}`).update({
       endedAt: new Date(),
     });
     closeModal();
@@ -25,11 +33,13 @@ export function Modal(props: ModalProps) {
 
   async function handleDeleteQuestion() {
     closeModal();
-    await database.ref(`rooms/${props.roomId}/questions/${props.questionId}`).remove();
+    await database
+      .ref(`rooms/${roomId}/questions/${questionId}`)
+      .remove();
   }
 
   function closeModal() {
-    props.setIsOpen(false);
+    setIsOpen(false);
   }
 
   const title_close = "Encerrar Sala";
@@ -40,9 +50,9 @@ export function Modal(props: ModalProps) {
   return (
     <div className="modal-container">
       <div className="modal">
-        <img src={closedImg} alt="Closed Room" />
-        <h3>{props.type === "close" ? title_close : title_delete}</h3>
-        <span>{props.type === "close" ? subtitle_close : subtitle_delete}</span>
+        <img src={type === "close" ? closedImg : deleteModalImg} alt="Closed Room" />
+        <h3>{type === "close" ? title_close : title_delete}</h3>
+        <span>{type === "close" ? subtitle_close : subtitle_delete}</span>
         <div className="buttons">
           <Button isOutlined isLogout onClick={closeModal}>
             Cancelar
@@ -51,10 +61,10 @@ export function Modal(props: ModalProps) {
             isOutlined
             isDanger
             onClick={
-              props.type === "close" ? handleClosedRoom : handleDeleteQuestion
+              type === "close" ? handleClosedRoom : handleDeleteQuestion
             }
           >
-            {props.type === "close" ? "Sim, encerrar" : "Sim, deletar"}
+            {type === "close" ? "Sim, encerrar" : "Sim, deletar"}
           </Button>
         </div>
       </div>
