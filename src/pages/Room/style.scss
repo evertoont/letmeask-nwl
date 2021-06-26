@@ -10,9 +10,18 @@
       justify-content: space-between;
       align-items: center;
 
+      @media (max-width: 414px) {
+        flex-direction: column;
+      }
+
       > a {
         img {
           max-height: 45px;
+
+          @media (max-width: 414px) {
+            margin-bottom: 25px;
+            max-height: 60px;
+          }
         }
       }
 
@@ -31,6 +40,14 @@
     max-width: 50rem;
     margin: 0 auto;
 
+    @media (max-width: 414px) {
+      margin: auto 16px;
+    }
+
+    @media (max-width: 770px) {
+      margin: auto 24px;
+    }
+
     .room-title {
       margin: 32px 0 24px;
       display: flex;
@@ -40,6 +57,10 @@
         font-family: "Poppins", sans-serif;
         font-size: 24px;
         color: #29292e;
+
+        @media (max-width: 414px) {
+          font-size: 18px;
+        }
       }
 
       span {
@@ -50,6 +71,10 @@
         color: #fff;
         font-weight: 500;
         font-size: 14px;
+
+        @media (max-width: 414px) {
+          text-align: center;
+        }
       }
     }
 
