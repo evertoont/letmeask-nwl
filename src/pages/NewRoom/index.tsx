@@ -3,7 +3,6 @@ import { FormEvent } from "react";
 import illustrationImg from "../../assets/images/illustration.svg";
 import logoImg from "../../assets/images/logo.svg";
 import { Button } from "../../components/Button";
-import { Toggle } from "../../components/Toggle";
 
 import { Link, useHistory } from "react-router-dom";
 import { useState } from "react";
