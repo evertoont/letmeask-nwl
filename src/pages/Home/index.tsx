@@ -10,14 +10,18 @@ import loginImg from "../../assets/images/login.svg";
 import toast, { Toaster } from "react-hot-toast";
 
 import { Button } from "../../components/Button";
+import { Toggle } from "../../components/Toggle";
 import { database } from "../../services/firebase";
 
 import "../../styles/auth.scss";
+import { useTheme } from "../../hooks/useTheme";
 
 export function Home() {
   const history = useHistory();
   const { user, signInWithGoogle } = useAuth();
   const [roomCode, setRoomCode] = useState("");
+
+  const { theme } = useTheme();
 
   async function handleCreateRoom() {
     if (!user) {
@@ -51,7 +55,7 @@ export function Home() {
   }
 
   return (
-    <div id="page-auth">
+    <div id="page-auth" className={theme}>
       <aside>
         <img src={illustrationImg} alt="Ilustração de perguntas e respostas" />
         <strong>Crie sala de Q&amp;A ao-vivo</strong>

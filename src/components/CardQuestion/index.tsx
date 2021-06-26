@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import cx from "classnames";
 
 import "./style.scss";
+import { useTheme } from "../../hooks/useTheme";
 
 type QuestionProps = {
   content: string;
@@ -23,10 +24,11 @@ export function CardQuestion({
   amountLike,
   children,
 }: QuestionProps) {
+  const {theme} = useTheme()
   return (
     <div
       className={cx(
-        "question",
+        `question ${theme}`,
         { answered: isAnswered },
         { highlighted: isHighlighted && !isAnswered }
       )}

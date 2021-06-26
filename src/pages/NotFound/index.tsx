@@ -2,13 +2,15 @@ import { useHistory } from "react-router-dom";
 
 import logoImg from "../../assets/images/logo.svg";
 import { Button } from "../../components/Button";
+import { useTheme } from "../../hooks/useTheme";
 import "./style.scss";
 
 export function NotFound() {
   const history = useHistory();
+  const {theme} = useTheme()
 
   return (
-    <div id="page-notfound">
+    <div id="page-notfound" className={theme}>
       <main>
         <div className="container">
           <img src={logoImg} alt="Letmeask" />

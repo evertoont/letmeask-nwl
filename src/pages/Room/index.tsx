@@ -8,6 +8,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { Button } from "../../components/Button";
 import { RoomCode } from "../../components/RoomCode";
 import { Loading } from "../../components/Loading"
+import {Toggle} from "../../components/Toggle"
 
 import { useAuth } from "../../hooks/useAuth";
 import { database } from "../../services/firebase";
@@ -15,6 +16,7 @@ import { CardQuestion } from "../../components/CardQuestion";
 import { useRoom } from "../../hooks/useRoom";
 
 import "./style.scss";
+import { useTheme } from "../../hooks/useTheme";
 
 type RoomParams = {
   id: string;
@@ -26,6 +28,7 @@ export function Room() {
   const [newQuestion, setNewQuestion] = useState("");
   const roomId = params.id;
   const history = useHistory()
+  const {theme} = useTheme()
 
   const { questions, title, dataRoom } = useRoom(roomId);
   const questionsQuantity = questions.length;
@@ -98,20 +101,21 @@ export function Room() {
     }
   }
   return (
-    <div id="page-room">
-      <header>
+    <div id="page-room" className={theme}>
+      <header className={theme}>
         <div className="content">
           <Link to="/"><img src={logoImg} alt="Letmeask"/></Link>
           <div>
             <RoomCode code={roomId} />
             {user && <Button isOutlined isLogout onClick={handleLogOut}> Sair</Button>}
+            <Toggle/>
           </div>
         </div>
         <Toaster toastOptions={{ duration: 2100 }} />
       </header>
 
       <main>
-        <div className="room-title">
+        <div className={`room-title ${theme}`}>
           <h1>Sala - {title}</h1>
           {questionsQuantity > 0 && (
             <span>{questionsQuantity} pergunta(s)</span>
@@ -127,7 +131,7 @@ export function Room() {
 
           <div className="form-footer">
             {user ? (
-              <div className="user-info">
+              <div className={`user-info ${theme}`}>
                 <img src={user.avatar} alt={user.name} />
                 <span>{user.name}</span>
               </div>

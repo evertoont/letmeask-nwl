@@ -3,6 +3,14 @@
   align-items: stretch;
   height: 100vh;
 
+  &.dark{
+    background: #141414;
+    
+    h2{
+      color: #cacaca;
+    }
+  }
+
   aside {
     flex: 7;
     background: #835afd;
@@ -44,8 +52,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
 
+  }
+  
   .main-content {
     display: flex;
     flex-direction: column;

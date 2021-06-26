@@ -4,6 +4,15 @@
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
   padding: 24px;
 
+  &.dark{
+    background: #141414;
+    box-shadow: 0 2px 12px rgba(88, 88, 88, 0.1);
+
+    p{
+      color: #cacaca;
+    }
+  }
+
   .content {
     display: flex;
     flex-direction: column;
@@ -19,10 +28,6 @@
 
   &:not(:first-child) {
     margin-top: 8px;
-  }
-
-  &:last-child {
-    margin-bottom: 24px;
   }
 
   &.highlighted {

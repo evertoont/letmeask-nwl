@@ -10,6 +10,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { Button } from "../../components/Button";
 import { RoomCode } from "../../components/RoomCode";
 import { Modal } from "../../components/Modal";
+import {Toggle} from "../../components/Toggle"
 
 import { useAuth } from "../../hooks/useAuth";
 import { CardQuestion } from "../../components/CardQuestion";
@@ -18,6 +19,7 @@ import { database } from "../../services/firebase";
 
 import { EmptyQuestion } from "../../components/EmptyQuestion";
 import "./style.scss";
+import { useTheme } from "../../hooks/useTheme";
 
 type RoomParams = {
   id: string;
@@ -28,6 +30,7 @@ export function AdminRoom() {
   const params = useParams<RoomParams>();
   const roomId = params.id;
   const history = useHistory();
+  const {theme} = useTheme()
 
   const { questions, title, dataRoom } = useRoom(roomId);
   const questionsQuantity = questions.length;
@@ -111,8 +114,8 @@ export function AdminRoom() {
           type={typeModal}
         />
       )}
-      <div id="page-admin">
-        <header>
+      <div id="page-admin" className={theme}>
+        <header className={theme}>
           <div className="content">
             <Link to="/">
               <img src={logoImg} alt="Letmeask" />
@@ -130,13 +133,14 @@ export function AdminRoom() {
               >
                 Sair
               </Button>}
+              <Toggle/>
             </div>
           </div>
           <Toaster toastOptions={{ duration: 2100 }} />
         </header>
 
         <main>
-          <div className="room-title">
+          <div className={`room-title ${theme}` } >
             <h1>Sala - {title}</h1>
             {questionsQuantity > 0 && (
               <span>{questionsQuantity} pergunta(s)</span>
