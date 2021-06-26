@@ -1,0 +1,42 @@
+.modal-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  position: fixed;
+  background-color: rgba(26, 36, 46, 0.6);
+  z-index: 1;
+
+  .modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #f8f8f8;
+    width: 400px;
+    min-height: 250px;
+    border-radius: 8px;
+
+    h3 {
+      color: #29292e;
+      font-size: 24px;
+      font-family: "Poppins", sans-serif;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    span {
+      color: #737380;
+      font-size: 16px;
+      font-family: "Roboto", sans-serif;
+      margin-top: 12px;
+    }
+
+    .buttons {
+      display: flex;
+      margin-top: 30px;
+      gap: 8px;
+    }
+  }
+}
