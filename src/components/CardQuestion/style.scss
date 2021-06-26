@@ -8,6 +8,10 @@
     background: #141414;
     box-shadow: 0 2px 12px rgba(88, 88, 88, 0.1);
 
+    &.answered{
+      background: #32442b;
+    }
+
     p{
       color: #cacaca;
     }
