@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
 import { useHistory } from "react-router-dom";
 import { database } from "../services/firebase";
 import { useAuth } from "./useAuth";

@@ -104,7 +104,7 @@ export function Room() {
           <Link to="/"><img src={logoImg} alt="Letmeask"/></Link>
           <div>
             <RoomCode code={roomId} />
-            <Button isOutlined isLogout onClick={handleLogOut} disabled={!user}> Sair</Button>
+            {user && <Button isOutlined isLogout onClick={handleLogOut}> Sair</Button>}
           </div>
         </div>
         <Toaster toastOptions={{ duration: 2100 }} />

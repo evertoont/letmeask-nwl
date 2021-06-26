@@ -122,14 +122,14 @@ export function AdminRoom() {
               <Button isOutlined onClick={closedRoom} disabled={!user}>
                 Encerra sala
               </Button>
-              <Button
+              {user && <Button
                 isOutlined
                 isLogout
                 onClick={handleLogOut}
                 disabled={!user}
               >
                 Sair
-              </Button>
+              </Button>}
             </div>
           </div>
           <Toaster toastOptions={{ duration: 2100 }} />
