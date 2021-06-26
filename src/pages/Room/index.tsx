@@ -60,6 +60,7 @@ export function Room() {
     };
 
     await database.ref(`rooms/${roomId}/questions`).push(question);
+    toast.success("Pergunta enviada com sucesso!");
 
     setNewQuestion("");
   }

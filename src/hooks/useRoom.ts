@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { useHistory } from "react-router-dom";
 import { database } from "../services/firebase";
 import { useAuth } from "./useAuth";
 
@@ -45,38 +47,44 @@ export function useRoom(roomId: String) {
   const [questions, setQuestions] = useState<Questions[]>([]);
   const [dataRoom, setDataRoom] = useState<DataRoomProps>();
   const [title, setTitle] = useState("");
+  const history = useHistory()
 
   useEffect(() => {
     const roomRef = database.ref(`rooms/${roomId}`);
 
     roomRef.on("value", (room) => {
       const databaseRoom = room.val();
-      const firebaseQuestions: FirebaseQuestions = databaseRoom.questions ?? {};
-      setDataRoom(databaseRoom);
+      if (databaseRoom != null) {
+        const firebaseQuestions: FirebaseQuestions =
+          databaseRoom.questions ?? {};
+        setDataRoom(databaseRoom);
 
-      const parsedQuestions = Object.entries(firebaseQuestions).map(
-        ([key, value]) => {
-          return {
-            id: key,
-            content: value.content,
-            author: value.author,
-            isHighlighted: value.isHighlighted,
-            isAnswered: value.isAnswered,
-            likeCount: Object.values(value.likes ?? {}).length,
-            likeId: Object.entries(value.likes ?? {}).find(
-              ([key, like]) => like.authorId === user?.id
-            )?.[0],
-          };
-        }
-      );
-      setTitle(databaseRoom.title);
-      setQuestions(parsedQuestions);
+        const parsedQuestions = Object.entries(firebaseQuestions).map(
+          ([key, value]) => {
+            return {
+              id: key,
+              content: value.content,
+              author: value.author,
+              isHighlighted: value.isHighlighted,
+              isAnswered: value.isAnswered,
+              likeCount: Object.values(value.likes ?? {}).length,
+              likeId: Object.entries(value.likes ?? {}).find(
+                ([key, like]) => like.authorId === user?.id
+              )?.[0],
+            };
+          }
+        );
+        setTitle(databaseRoom.title);
+        setQuestions(parsedQuestions);
+      }else{
+        history.push('/')
+      }
     });
 
     return () => {
       roomRef.off("value");
     };
-  }, [roomId, user?.id]);
+  }, [roomId, user?.id, history]);
 
   return { questions, title, dataRoom };
 }
