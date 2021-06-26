@@ -4,6 +4,19 @@
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
   padding: 24px;
 
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    span {
+      width: 100%;
+      text-align: end;
+      margin-bottom: 8px;
+      color: #835afd;
+    }
+  }
+
   &:not(:first-child) {
     margin-top: 8px;
   }
@@ -27,6 +40,7 @@
 
   p {
     color: #29292e;
+    word-break: break-all;
   }
 
   footer {
