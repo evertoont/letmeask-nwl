@@ -1,21 +1,8 @@
 .question {
   background: #fefefe;
   border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   padding: 24px;
-
-  &.dark{
-    background: #141414;
-    box-shadow: 0 2px 12px rgba(88, 88, 88, 0.1);
-
-    &.answered{
-      background: #32442b;
-    }
-
-    p{
-      color: #cacaca;
-    }
-  }
 
   .content {
     display: flex;
@@ -104,6 +91,29 @@
       &:hover {
         filter: brightness(0.7);
       }
+    }
+  }
+}
+
+.dark {
+  .question {
+    background: #191b1c;
+    box-shadow: 0 2px 12px rgba(88, 88, 88, 0.1);
+
+    &.answered {
+      background: #2c2f31;
+    }
+
+    &.highlighted {
+      background: #1c1f20;
+    }
+
+    p {
+      color: #cacaca;
+    }
+
+    footer .user-info span {
+      color: #cacaca;
     }
   }
 }

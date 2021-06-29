@@ -2,6 +2,7 @@ import { useHistory, useParams, Link } from "react-router-dom";
 import { useState } from "react";
 
 import logoImg from "../../assets/images/logo.svg";
+import logoDarkImg from "../../assets/images/logo-dark.svg";
 import deleteImg from "../../assets/images/delete.svg";
 import checkImg from "../../assets/images/check.svg";
 import answerImg from "../../assets/images/answer.svg";
@@ -118,7 +119,7 @@ export function AdminRoom() {
         <header className={theme}>
           <div className="content">
             <Link to="/">
-              <img src={logoImg} alt="Letmeask" />
+              <img src={theme === 'light' ? logoImg : logoDarkImg} alt="Letmeask" />
             </Link>
             <div>
               <RoomCode code={roomId} />
@@ -141,7 +142,7 @@ export function AdminRoom() {
 
         <main>
           <div className={`room-title ${theme}` } >
-            <h1>Sala - {title}</h1>
+            <h1>Sala: {title}</h1>
             {questionsQuantity > 0 && (
               <span>{questionsQuantity} pergunta(s)</span>
             )}

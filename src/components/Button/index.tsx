@@ -1,6 +1,7 @@
 import { ButtonHTMLAttributes } from "react";
 import "./style.scss";
 import cx from "classnames";
+import { useTheme } from "../../hooks/useTheme";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   isOutlined?: boolean;
@@ -14,10 +15,11 @@ export function Button({
   isDanger = false,
   ...props
 }: ButtonProps) {
+  const theme = useTheme()
   return (
     <button
       className={cx(
-        "button",
+        `button ${theme}`,
         { outlined: isOutlined },
         { logout: isLogout },
         { danger: isDanger }

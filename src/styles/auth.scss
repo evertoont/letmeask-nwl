@@ -3,11 +3,27 @@
   align-items: stretch;
   height: 100vh;
 
-  &.dark{
-    background: #141414;
-    
-    h2{
-      color: #cacaca;
+  &.dark {
+    background: #1c1e1f;
+
+    aside {
+      background: #270295;
+    }
+    .main-content {
+      form {
+        input {
+          background: #181a1b;
+          border-color: #424242;
+          color: #fff;
+        }
+      }
+      p {
+        color: #fff;
+      }
+    }
+
+    h2 {
+      color: #FFF;
     }
   }
 
@@ -52,9 +68,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
   }
-  
+
   .main-content {
     display: flex;
     flex-direction: column;
@@ -67,8 +82,8 @@
       align-self: center;
     }
 
-    .info-user{
-      img{
+    .info-user {
+      img {
         width: 80px;
         height: 80px;
         margin-top: 25px;

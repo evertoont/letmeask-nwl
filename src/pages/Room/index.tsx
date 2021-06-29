@@ -3,6 +3,7 @@ import {Link, useHistory} from 'react-router-dom'
 
 import { useParams } from "react-router-dom";
 import logoImg from "../../assets/images/logo.svg";
+import logoDarkImg from "../../assets/images/logo-dark.svg";
 
 import toast, { Toaster } from "react-hot-toast";
 import { Button } from "../../components/Button";
@@ -14,9 +15,9 @@ import { useAuth } from "../../hooks/useAuth";
 import { database } from "../../services/firebase";
 import { CardQuestion } from "../../components/CardQuestion";
 import { useRoom } from "../../hooks/useRoom";
+import { useTheme } from "../../hooks/useTheme";
 
 import "./style.scss";
-import { useTheme } from "../../hooks/useTheme";
 
 type RoomParams = {
   id: string;
@@ -102,9 +103,9 @@ export function Room() {
   }
   return (
     <div id="page-room" className={theme}>
-      <header className={theme}>
+      <header>
         <div className="content">
-          <Link to="/"><img src={logoImg} alt="Letmeask"/></Link>
+          <Link to="/"><img src={theme === 'light' ? logoImg : logoDarkImg} alt="Letmeask"/></Link>
           <div>
             <RoomCode code={roomId} />
             {user && <Button isOutlined isLogout onClick={handleLogOut}> Sair</Button>}
@@ -115,8 +116,8 @@ export function Room() {
       </header>
 
       <main>
-        <div className={`room-title ${theme}`}>
-          <h1>Sala - {title}</h1>
+        <div className="room-title">
+          <h1>Sala: {title}</h1>
           {questionsQuantity > 0 && (
             <span>{questionsQuantity} pergunta(s)</span>
           )}
@@ -131,7 +132,7 @@ export function Room() {
 
           <div className="form-footer">
             {user ? (
-              <div className={`user-info ${theme}`}>
+              <div className="user-info">
                 <img src={user.avatar} alt={user.name} />
                 <span>{user.name}</span>
               </div>

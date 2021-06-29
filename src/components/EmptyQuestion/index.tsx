@@ -1,10 +1,14 @@
 import emptyImg from "../../assets/images/empty-questions.svg";
+import { useTheme } from "../../hooks/useTheme";
 import { Loading } from "../Loading/";
 import "./style.scss";
 
 export function EmptyQuestion() {
+
+  const theme = useTheme()
+
   return (
-    <div className="empty-question">
+    <div className={`empty-question ${theme}`}>
       <img src={emptyImg} alt="" />
       <p>Nenhuma pergunta por aqui...</p>
       <span>

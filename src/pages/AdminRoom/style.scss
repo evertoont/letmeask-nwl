@@ -1,16 +1,17 @@
 #page-admin {
   min-height: 100vh;
+
   &.dark {
-    background: #141414;
+    background: #1C1E1F;
+
+    header{
+      border-bottom: 1px solid #4d4d4d;
+    }
   }
 
   header {
     padding: 24px;
     border-bottom: 1px solid #e2e2e2;
-
-    &.dark {
-      border-bottom: 1px solid #4d4d4d;
-    }
 
     .content {
       max-width: 70rem;

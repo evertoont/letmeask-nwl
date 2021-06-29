@@ -19,3 +19,14 @@
     font-size: 14px;
   }
 }
+
+.dark {
+  .empty-question {
+    p {
+      color: #cdc8c2;
+    }
+    span {
+      color: #9b9386;
+    }
+  }
+}

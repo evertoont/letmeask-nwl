@@ -52,3 +52,18 @@
     }
   }
 }
+
+.dark {
+  .room-code {
+    background-color: #181a1b;
+    border-color: #270296;
+
+    div {
+      background: #270295;
+    }
+
+    span {
+      color: #cdc8c2;
+    }
+  }
+}

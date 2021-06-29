@@ -5,6 +5,7 @@ import { useAuth } from "../../hooks/useAuth";
 
 import illustrationImg from "../../assets/images/illustration.svg";
 import logoImg from "../../assets/images/logo.svg";
+import logoDarkImg from "../../assets/images/logo-dark.svg";
 import googleIconImg from "../../assets/images/google-icon.svg";
 import loginImg from "../../assets/images/login.svg";
 import toast, { Toaster } from "react-hot-toast";
@@ -63,7 +64,7 @@ export function Home() {
       <main>
         <Toaster position="top-right" toastOptions={{ duration: 2000 }} />
         <div className="main-content">
-          <img src={logoImg} alt="Letmeask" />
+          <img src={theme === 'light' ? logoImg : logoDarkImg} alt="Letmeask" />
           <button className="create-room" onClick={handleCreateRoom}>
             <img src={googleIconImg} alt="Logo do Google" />
             Crie sua sala com o Google
