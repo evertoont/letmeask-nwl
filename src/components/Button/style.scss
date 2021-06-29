@@ -56,5 +56,17 @@
     background: #181a1b;
     color: #8259fd;
     border-color: #270296;
+    &:hover {
+      filter: brightness(1.1);
+    }
+  }
+
+  .logout {
+    background-color: #2c2f31;
+    border-color: #3a3f41;
+    color: #9b9386;
+    &:hover {
+      background: #3d4144;
+    }
   }
 }

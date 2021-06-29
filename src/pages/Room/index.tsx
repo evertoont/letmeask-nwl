@@ -108,7 +108,6 @@ export function Room() {
           <Link to="/"><img src={theme === 'light' ? logoImg : logoDarkImg} alt="Letmeask"/></Link>
           <div>
             <RoomCode code={roomId} />
-            {user && <Button isOutlined isLogout onClick={handleLogOut}> Sair</Button>}
             <Toggle/>
           </div>
         </div>
@@ -134,7 +133,10 @@ export function Room() {
             {user ? (
               <div className="user-info">
                 <img src={user.avatar} alt={user.name} />
-                <span>{user.name}</span>
+                <div className="logout">
+                  <p>{user.name}</p>
+                  <span onClick={handleLogOut}>Deslogar</span>
+                </div>
               </div>
             ) : (
               <span>

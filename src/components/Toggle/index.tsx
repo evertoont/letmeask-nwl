@@ -1,5 +1,4 @@
 import Switch from "react-switch";
-import luaImg from "../../assets/images/lua.svg"
 import { useTheme } from "../../hooks/useTheme";
 
 export function Toggle() {
