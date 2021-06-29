@@ -9,6 +9,7 @@ import logoDarkImg from "../../assets/images/logo-dark.svg";
 import googleIconImg from "../../assets/images/google-icon.svg";
 import loginImg from "../../assets/images/login.svg";
 import toast, { Toaster } from "react-hot-toast";
+import {Toggle} from "../../components/Toggle"
 
 import { Button } from "../../components/Button";
 import { database } from "../../services/firebase";
@@ -64,6 +65,9 @@ export function Home() {
       <main>
         <Toaster position="top-right" toastOptions={{ duration: 2000 }} />
         <div className="main-content">
+          <div className="toggle">
+            <Toggle/>
+          </div>
           <img src={theme === 'light' ? logoImg : logoDarkImg} alt="Letmeask" />
           <button className="create-room" onClick={handleCreateRoom}>
             <img src={googleIconImg} alt="Logo do Google" />

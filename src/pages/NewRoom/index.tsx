@@ -4,6 +4,7 @@ import illustrationImg from "../../assets/images/illustration.svg";
 import logoImg from "../../assets/images/logo.svg";
 import logoDarkImg from "../../assets/images/logo-dark.svg";
 import { Button } from "../../components/Button";
+import {Toggle} from "../../components/Toggle"
 
 import { Link, useHistory } from "react-router-dom";
 import { useState } from "react";
@@ -53,6 +54,9 @@ export function NewRoom() {
       <main>
         <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
         <div className="main-content">
+        <div className="toggle">
+            <Toggle/>
+          </div>
           <img src={theme === 'light' ? logoImg : logoDarkImg} alt="Letmeask" />
           {user && (
             <div className="info-user">
